@@ -39,6 +39,10 @@ export default {
     enterable: {
       type: Boolean,
       default: true
+    },
+    delayTimer:{
+      type: Number,
+      default: 200
     }
   },
 
@@ -52,7 +56,7 @@ export default {
       }
     }).$mount();
 
-    this.debounceClose = debounce(200, () => this.handleClosePopper());
+    this.debounceClose = this.delayTimer === 0 ?  this.handleClosePopper  :  debounce(200, () => this.handleClosePopper());
   },
 
   render(h) {
